@@ -13,23 +13,33 @@ import org.gitia.froog.statistics.Clock;
 public class EnsayoMultiprocesamiento {
 
     static cublasHandle handle;
-    static double h_A[];
-    static double h_B[];
-    static double h_C[];
-    static double h_C_SM[];
 
     public static void main(String args[]) {
-        // Create a CUBLAS handle
+        
+        //Creamos el manejador de la placa de video
         handle = new cublasHandle();
         cublasCreate(handle);
         
+        //Dimensiones de las matrices a ejecutar
         int m = 200;
         int n = 200;
         int k = n;
 
+        //Matrices
         SimpleMatrix w = SimpleMatrix.random(m, n, -2, 2, new Random());
         SimpleMatrix x = SimpleMatrix.random(n, k, -2, 2, new Random());
         SimpleMatrix b = SimpleMatrix.random(m, 1, -2, 2, new Random());
+        
+        //Ejecución del ensayo 
+        for (int i = 0; i < 10; i++) {
+            //0. creamos las matrices para asegurar borrar los datos
+            //1. ejecutamos en CPU
+            //2. ejecutamos en EJML
+            //3. ejecutamos en GPU
+            //4. ejecutamos en 
+            
+            
+        }
         
         Clock c = new Clock();
         c.start();
