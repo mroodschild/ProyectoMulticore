@@ -30,17 +30,6 @@ public class EnsayoMultiprocesamiento {
         SimpleMatrix x = SimpleMatrix.random(n, k, -2, 2, new Random());
         SimpleMatrix b = SimpleMatrix.random(m, 1, -2, 2, new Random());
         
-        //Ejecución del ensayo 
-        for (int i = 0; i < 10; i++) {
-            //0. creamos las matrices para asegurar borrar los datos
-            //1. ejecutamos en CPU
-            //2. ejecutamos en EJML
-            //3. ejecutamos en GPU
-            //4. ejecutamos en 
-            
-            
-        }
-        
         Clock c = new Clock();
         c.start();
         DGEMM_Cuda(w, x, b);
@@ -52,35 +41,6 @@ public class EnsayoMultiprocesamiento {
         c.printTime("EJML");
 
         cublasDestroy(handle);
-    }
-
-    /**
-     * Simple implementation of sgemm, using plain Java
-     */
-    private static void DGEMM_Java(int n, double A[], double B[],
-            double C[], SimpleMatrix W, SimpleMatrix X, SimpleMatrix b) {
-        
-        SimpleMatrix b_aux = new SimpleMatrix(W.numRows(), X.numCols());
-        for (int i = 0; i < X.numCols(); i++) {
-            b_aux.setColumn(i, 0, b.getMatrix().getData());
-        }
-        
-        A = W.transpose().getMatrix().getData();
-        B = X.transpose().getMatrix().getData();
-        C = b_aux.transpose().getMatrix().getData();
-        
-        double alpha = 1;
-        double beta = 1;
-        
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                double prod = 0;
-                for (int k = 0; k < n; ++k) {
-                    prod += A[k * n + i] * B[j * n + k];
-                }
-                C[j * n + i] = alpha * prod + beta * C[j * n + i];
-            }
-        }
     }
 
     public static SimpleMatrix DGEMM_Cuda(SimpleMatrix W, SimpleMatrix X, SimpleMatrix B) {
