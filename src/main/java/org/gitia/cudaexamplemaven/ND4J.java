@@ -32,6 +32,7 @@ public class ND4J {
             testSgemm(1024);
             testSgemm(2048);
             testSgemm(4096);
+            
         }
     }
 

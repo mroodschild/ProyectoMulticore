@@ -8,17 +8,6 @@ package org.gitia.cudaexamplemaven;
  * Copyright 2009-2011 Marco Hutter - http://www.jcuda.org
  */
 import java.util.Random;
-import jcuda.Pointer;
-import jcuda.Sizeof;
-import static jcuda.jcublas.JCublas2.cublasCreate;
-import static jcuda.jcublas.JCublas2.cublasDestroy;
-import static jcuda.jcublas.JCublas2.cublasDgemm;
-import static jcuda.jcublas.JCublas2.cublasGetVector;
-import static jcuda.jcublas.JCublas2.cublasSetVector;
-import jcuda.jcublas.cublasHandle;
-import static jcuda.jcublas.cublasOperation.CUBLAS_OP_N;
-import static jcuda.runtime.JCuda.cudaFree;
-import static jcuda.runtime.JCuda.cudaMalloc;
 import org.ejml.simple.SimpleMatrix;
 
 import org.gitia.froog.statistics.Clock;
@@ -32,12 +21,7 @@ import org.gitia.froog.statistics.Clock;
  */
 public class CPU_EJML {
 
-    static cublasHandle handle;
-
     public static void main(String args[]) {
-        handle = new cublasHandle();
-        cublasCreate(handle);
-
         for (int i = 0; i < 10; i++) {
             System.out.println("iteracion:\t" + i);
             testSgemm(28);
@@ -49,7 +33,6 @@ public class CPU_EJML {
             testSgemm(1024);
             testSgemm(2048);
         }
-        cublasDestroy(handle);
     }
 
     /**
