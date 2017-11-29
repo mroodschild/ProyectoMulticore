@@ -50,7 +50,7 @@ public class ND4J {
         c.start();
         DGEMM_ND4J(w, x, b);
         c.stop();
-        c.printTime("CPU ND4J\t" + n);
+        c.printTime("GPU ND4J\t" + n);
     }
 
     public static INDArray DGEMM_ND4J(INDArray W, INDArray X, INDArray B) {
